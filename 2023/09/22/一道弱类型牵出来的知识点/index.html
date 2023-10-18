@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN" id="theme-light-mode"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Yourname"><title>一道弱类型牵出来的知识点 · Hexo</title><meta name="description" content="题目1234567891011121314151617181920if (preg_match(&amp;#x27;/_|%5f|\.|%2E/i&amp;#x27;, $query)) &amp;#123;    var_dump($query);    echo&amp;quot;&amp;lt;br&amp;gt;&amp;quot;;    di"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a href="/">Home</a></li><li> <a href="/archives">Archives</a></li><li> <a href="/tags">Tags</a></li><li> <a href="/about">About</a></li><li> <a href="/links">Links</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li><li><a class="fa fa-sun-o" onclick="darkLightToggle();"></a></li></div><div class="avatar"><img src="/images/logo.webp"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/logo@2x.webp" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Hexo</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/Lhcfl"><i class="fa fa-github"></i></a></li><li><a href="mailto:yourname@example.com"><i class="fa fa-envelope"></i></a></li></ul></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Yourname</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/Lhcfl/hexo-theme-anatolo" target="_blank">Anatolo </a></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>一道弱类型牵出来的知识点</a></h3></div><div class="post-content"><p><h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/_|%5f|\.|%2E/i&#x27;</span>, <span class="variable">$query</span>)) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$query</span>);</span><br><span class="line">    <span class="keyword">echo</span><span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;你卡在第一步&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;k_e_y&#x27;</span>] !==<span class="string">&#x27;123&#x27;</span> &amp;&amp; <span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^123$/&#x27;</span>,<span class="variable">$_GET</span>[<span class="string">&#x27;k_e_y&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">echo</span>(<span class="string">&quot;成功绕过两个限制了&lt;br&gt;&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;command&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$command</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;command&#x27;</span>];</span><br><span class="line">        <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/\~|\`|\@|\#|\\$|\%|\&amp;|\*|\（|\）|\-|\+|\=|\&#123;|\&#125;|\[|\]|\:|\&#x27;|\&quot;|\,|\&lt;|\.|\&gt;|\/|\?|\\\\/i&quot;</span>,<span class="variable">$command</span>))&#123;</span><br><span class="line">            <span class="keyword">eval</span>(<span class="variable">$command</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span>(<span class="string">&quot;第三步没绕过&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span>(<span class="string">&quot;第二步没绕过&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一道php弱类型题，首先应该看懂正则，搞懂哪些限制；然后知道preg_match()的绕过方式；最后知道使用函数查看文件获得flag</p>
+<h1 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h1><h2 id="正则表达式是什么？"><a href="#正则表达式是什么？" class="headerlink" title="正则表达式是什么？"></a>正则表达式是什么？</h2><p>PHP正则表达式是形成搜索模式的字符序列，我们可以利用它实现对传入字符串的查询搜索（发现危险的东东就删掉或换掉），或是替换</p>
+<p>在php中其是   由 分隔符、模式 和 可选择修饰符 组成的字符串</p>
+<p>eg：&#x2F; 模式 &#x2F; 修饰符</p>
+<p>注：分隔符可以是任何非字母，数字，\ 或 空格的字符  &#x2F; # ~… 都行</p>
+<h2 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h2><h3 id="使用的函数"><a href="#使用的函数" class="headerlink" title="使用的函数"></a>使用的函数</h3><p>preg_match(string $pattern, string $subject  […] )     match(匹配模式)   ——》在字符串中找到该模式，成功返回1，否则0；  $pattern是正则表达式， $subject是目标字符串；</p>
+<p>preg_match_all()    （匹配所有模式）——》 在字符串中找到匹配该模式的次数，返回次数</p>
+<p>preg_replace()    replace(代替)  ——》会将匹配模式中的字符换掉，返回替换后的字符串</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ul>
+<li><p>字面值字符：字母，数字，空格等，可以直接匹配</p>
+</li>
+<li><p>特殊字符：eg：* + ？等，具有特殊含义和功能</p>
+<ul>
+<li><p><code>*</code>：匹配前面的子表达式0次或多次<br>啥叫子表达式？–》eg:<code>abcd*</code> 这里的d就是“前面的子表达式”，匹配的时候会匹配<code>abc</code>+零次或多次<code>d</code>   相当于{0,}<br><img src="file:///C:/Users/WangTao/Pictures/Typedown/c95f83ac-7fd2-4a3f-b89a-cb4093d4d978.png" alt="c95f83ac-7fd2-4a3f-b89a-cb4093d4d978"></p>
+</li>
+<li><p><code>+</code> ： 匹配一次或多次</p>
+</li>
+<li><p><code>.</code> ： 匹配  \n 以外的任何字符</p>
+</li>
+<li><p><code>?</code> ：匹配零次或一次</p>
+</li>
+</ul>
+</li>
+<li><p>字符类：用方括号 <code>[ ]</code> 包围的字符集合，用于匹配方括号内的任意一个字符。<br>eg：<code>[abcd]</code> 就能匹配abcd中的任一字符，它会看作为一个整体，可以在后面接后续操作<br>一个正则表达式遍历搜索的时候是从头搜索起的，直到遇到一个不符合的<br><img src="file:///C:/Users/WangTao/Pictures/Typedown/d6857797-72a2-46f1-9421-e77089479a6a.png" alt="d6857797-72a2-46f1-9421-e77089479a6a"><br>这个例子会遍历搜索表达式里有abcd的地方<br>但是遇到第一个不符合的地方时就会“断掉”<br><img src="file:///C:/Users/WangTao/Pictures/Typedown/cdef4b4c-b99f-4599-a496-a28a446bd104.png" alt="cdef4b4c-b99f-4599-a496-a28a446bd104"><br>这里就会在b这个地方断掉</p>
+</li>
+<li><p>元字符：例如 <code>\d</code>、<code>\w</code>、<code>\s</code> 等，用于匹配特定类型的字符，如数字、字母、空白字符等。</p>
+</li>
+<li><p>修饰符：<code>i   g   m   s ...</code><br><img src="file:///C:/Users/WangTao/Pictures/Typedown/c59fdac7-3d49-47e6-b912-8edeea813f70.png" alt="c59fdac7-3d49-47e6-b912-8edeea813f70"></p>
+</li>
+<li><p>量词：例如 <code>&#123;n&#125;</code>、<code>&#123;n,&#125;</code>、<code>&#123;n,m&#125;</code> 等，用于指定匹配的次数或范围。</p>
+</li>
+<li><p>边界符号：例如 <code>^</code>、<code>$</code>、<code>\b</code>、<code>\B</code> 等，用于匹配字符串的开头、结尾或单词边界位置。</p>
+<ul>
+<li><p>^表示字符 开头</p>
+</li>
+<li><p>$表示 结束<br>具体的遇到就百度吧</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="变量字符的绕过"><a href="#变量字符的绕过" class="headerlink" title="变量字符的绕过"></a>变量字符的绕过</h1><p>（前面获取变量的地方没截下来）我们看到他要验证k_e_y传参的值，但是参数不能输入<code>_</code>，就考到非法字符替换</p>
+<p>简单说来，php在获取变量之后会将他们转化为有效变量名，此时就会替换非法字符</p>
+<p>eg： [     &amp;  空格  +  .   &#x3D; 以及他们的url编码</p>
+<p>所以面对检查问题时我们往往通过此方法绕过</p>
+<p><img src="file:///C:/Users/WangTao/Pictures/Typedown/2ebde11c-d0a2-4935-8852-e08b70eb460b.png" alt="2ebde11c-d0a2-4935-8852-e08b70eb460b"></p>
+<p>实测 + 可绕过</p>
+<h1 id="preg-match-绕过"><a href="#preg-match-绕过" class="headerlink" title="preg_match()绕过"></a>preg_match()绕过</h1><p>比较字符串函数，详见php笔记</p>
+<p>绕过方法</p>
+<ol>
+<li>数组绕过：preg_match只处理字符串，传入的subject是数组时就会返回false</li>
+<li>PCRE回溯次数限制（什么归东东，不太懂）</li>
+<li>换行符</li>
+<li>尾句%0a绕过</li>
+</ol>
+<h1 id="php函数实现无参数读取文件"><a href="#php函数实现无参数读取文件" class="headerlink" title="php函数实现无参数读取文件"></a>php函数实现无参数读取文件</h1><p>在这里我们应该首先想到文件读取，但是过滤了很多字符，发现括号是中文的。那么就是提示我们使用函数</p>
+<p>要使用文件读取</p>
+<p>过滤了那么多，就只能用无参数文件读取</p>
+<p>eval函数使得存在RCE（远程代码执行漏洞），我们利用它实现我们的函数执行</p>
+<h2 id="首先我们应该知道文件夹名"><a href="#首先我们应该知道文件夹名" class="headerlink" title="首先我们应该知道文件夹名"></a>首先我们应该知道文件夹名</h2><p>正常的情况，<code>print_r(scandir(&#39;.&#39;));</code> 可以看到当前文件夹名，但是<code>.</code>是被过滤的。所以我们应该制造这个点</p>
+<h3 id="制造点"><a href="#制造点" class="headerlink" title="制造点"></a>制造点</h3><ol>
+<li><p>localeconv()</p>
+<p><code>localeconv()</code>返回一包含本地数字及货币格式信息的数组。而数组第一项就是<code>&quot;.&quot;</code></p>
+<p>此时我们的需求就是获取第一个字符</p>
+<p>那么就要献出</p>
+<p><code>current()</code>返回数组中的单元，默认取第一个值</p>
+<p><code>reset()</code>函数</p>
+<p>所以方法&#x3D;<code>print_r(scandir(pos(localeconv())));</code>其中<code>pos</code>是<code>current</code>别名</p>
+<p><code>print_r(scandir(current(localeconv())));</code></p>
+</li>
+<li><p><code>chr(46)</code></p>
+<p><code>chr(46) = .</code></p>
+</li>
+<li><p><code>phpversion()</code> </p>
+<p>通过取数函数运算的方式得到46</p>
+</li>
+</ol>
+<h2 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h2><p>知道了文件夹名，而后要读文件</p>
+<p>读文件就是文件包含漏洞</p>
+<p>经典函数：</p>
+<ul>
+<li><p><code>readfile</code></p>
+</li>
+<li><p><code>highlight_file</code></p>
+</li>
+<li><p><code>file_get_contents</code></p>
+</li>
+</ul>
+<h2 id="查看上一级目录文件名"><a href="#查看上一级目录文件名" class="headerlink" title="查看上一级目录文件名"></a>查看上一级目录文件名</h2><ul>
+<li><p><code>dirname()</code>返回路径中目录的部分</p>
+</li>
+<li><p>构造<code>..</code> —— 就是两个点</p>
+<p><code>print_r(next(scandir(getcwd())));</code></p>
+</li>
+</ul>
+<h3 id="读取上级目录文件"><a href="#读取上级目录文件" class="headerlink" title="读取上级目录文件"></a>读取上级目录文件</h3><p><code>show_source(array_rand(array_flip(scandir(dirname(chdir(dirname(getcwd())))))));</code></p>
+</p></div><div class="post-footer"><div class="tip">本文采用CC-BY-SA-3.0协议，转载请注明出处<br>Author: Yourname</div><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-09-22</span><span class="leancloud_visitors"></span><span>About 1407 words, 4 min 41 sec  read</span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/intent/tweet?text=I%20have%20found%20a%20great%20blog.%0A%0AHexo%20%C2%B7%20%E4%B8%80%E9%81%93%E5%BC%B1%E7%B1%BB%E5%9E%8B%E7%89%B5%E5%87%BA%E6%9D%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%0Ahttp://example.com/2023/09/22/%E4%B8%80%E9%81%93%E5%BC%B1%E7%B1%BB%E5%9E%8B%E7%89%B5%E5%87%BA%E6%9D%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/%0A"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/10/06/%E5%8E%84%E6%B0%8F%E7%AD%9B%E6%B3%95/" title="代码实现厄氏筛法的过程">Previous</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" title="第一篇博客——记录上传部署博客的过程">Next</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/darkLightToggle.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div></body></html>

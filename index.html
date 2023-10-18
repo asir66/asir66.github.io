@@ -1,89 +1,194 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+<!DOCTYPE html><html lang="zh-CN" id="theme-light-mode"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Yourname"><title>Hexo</title><meta name="description" content="A simple and beautiful blog"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a class="current" href="/">Home</a></li><li> <a href="/archives">Archives</a></li><li> <a href="/tags">Tags</a></li><li> <a href="/about">About</a></li><li> <a href="/links">Links</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li><li><a class="fa fa-sun-o" onclick="darkLightToggle();"></a></li></div><div class="avatar"><img src="/images/logo.webp"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/logo@2x.webp" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Hexo</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/Lhcfl"><i class="fa fa-github"></i></a></li><li><a href="mailto:yourname@example.com"><i class="fa fa-envelope"></i></a></li></ul></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Yourname</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/Lhcfl/hexo-theme-anatolo" target="_blank">Anatolo </a></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/18/Untitled/"></a></h3></div><div class="post-content"><div class="card"><p></p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-18</span><span class="leancloud_visitors"></span><span>About 0 words, 0 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/17/%E5%86%99%E7%88%AC%E8%99%AB%E7%9A%84%E4%B8%80%E5%A4%A9/"></a></h3></div><div class="post-content"><div class="card"><p><hr>
+<h2 id="title-写爬虫的一天"><a href="#title-写爬虫的一天" class="headerlink" title="title:写爬虫的一天"></a>title:写爬虫的一天</h2><p>爬虫基本原理：按照指定的规则获取网页内容。有道德的爬虫会先读读robot.txt的内容。爬虫用多种语言都能编写，而用python是由于库多，方便，上手快。本次打算使用python、Java、php编写自己的爬虫脚本</p>
+<p>爬虫分类</p>
+<p>爬虫之前首先要对网页元素进行审查</p>
+<h1 id="py爬虫"><a href="#py爬虫" class="headerlink" title="py爬虫"></a>py爬虫</h1><p>编写爬虫程序流程：</p>
+<ul>
+<li><p>先由urllib模块的request方法打开URL得到网页HTML对象</p>
+</li>
+<li><p>使用浏览器打开网页源代码分析网页结构以及元素节点</p>
+</li>
+<li><p>同过Beautiful Soup或者正则表达式提取数据</p>
+</li>
+<li><p>存储数据到本地磁盘或数据库</p>
+</li>
+</ul>
+<p>爬取之前首先确定爬取的页面是静态还是动态。类型不同程序不同</p>
+<p>静态网页直接从html中提取数据，</p>
+<p>动态网页需要通过动态抓包来获取客户端与服务器交互的JSON数据。</p>
+<p>分析第一个爬虫程序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="comment">#导包</span></span><br><span class="line">response=urllib.request.urlopen(<span class="string">&#x27;http://www.baidu.com/&#x27;</span>)</span><br><span class="line"><span class="comment">#使用了urllib模块的request模块的urlopen方法，得到了网页响应对象</span></span><br><span class="line"><span class="comment">#得到的网页response object</span></span><br><span class="line"><span class="built_in">print</span>(response)</span><br><span class="line">html = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># read()方法返回的是bytes类型（字节流），因此需要使用decode()转换为字符串</span></span><br><span class="line"><span class="built_in">print</span>(html)</span><br></pre></td></tr></table></figure>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<p>说明：网页中数据常以字节流的形式传输，使用Unicode编码方式，编码之后就得到了可视的字符串</p>
+<p>网页本身内容就是字节流的形式，只是浏览器自动解码了。所以我们爬取之后要解码</p>
+<hr>
+<h2 id="一个小插曲"><a href="#一个小插曲" class="headerlink" title="一个小插曲"></a>一个小插曲</h2><p>字符串、字节串和编码</p>
+<p>python里有一个好玩的点，他不能直接将编码的字符串直接decode为字符串</p>
+<p>举个例子</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&#x27;ZmxhZ3tpX2RvbnRfa25vd30=&#x27;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">base64_decode</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+<p>php里这样写完全没有问题</p>
+<p>而python中就要</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64  </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decode_base64</span>(<span class="params">encoded_str</span>):  </span><br><span class="line">    decoded_bytes = base64.b64decode(encoded_str)  </span><br><span class="line">    decoded_string = decoded_bytes.decode(<span class="string">&#x27;utf-8&#x27;</span>)  </span><br><span class="line">    <span class="keyword">return</span> decoded_string  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例用法  </span></span><br><span class="line">encoded_str = <span class="string">&quot;SGVsbG8gd29ybGQh&quot;</span>  <span class="comment"># 这是 &quot;Hello world&quot; 的 Base64 表示形式  </span></span><br><span class="line">decoded_str = decode_base64(encoded_str)  </span><br><span class="line"><span class="built_in">print</span>(decoded_str)  <span class="comment"># 输出： &quot;Hello world&quot;</span></span><br></pre></td></tr></table></figure>
 
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
+<p>先把字符串decode成了字节流再decode为字符串</p>
+<p>他的解释是字节流能更精确的表示原始数据，因为在python中字符串是Unicode字符的序列，处理数据时往往先转为字节流再转为字符串。他说直接由base64字符串到解码字符串会出现奇怪的现象</p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-17</span><span class="leancloud_visitors"></span><span>About 677 words, 2 min 15 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/16/ISCC%E8%B5%9B%E5%90%8E%E6%84%9F/">记第一次线下赛</a></h3></div><div class="post-content"><div class="card"><p><p>2023.10.15参加了搞ctf以来的第一次线下赛，顿觉一下上来就上强度。直接当作开眼界</p>
+<p>这次比赛之后给我的感触还是很多的。</p>
+<h2 id="编程，计算机语言功底"><a href="#编程，计算机语言功底" class="headerlink" title="编程，计算机语言功底"></a>编程，计算机语言功底</h2><p>之前会觉得安全人员编程能力不需要太叼（不需要像高级开发一样），但是这次比赛之后让我认识到实则安全人员首先是一个计算机人。再讲清楚点大家都是程序员，那么语言功底对我们就好似基本功，基本功一定要扎实，他决定了大家以后能飞多高。所以以后尽量不用在线工具（太离谱的另论）。编写脚本的时候一定要拿来读，写注释，成功复现。（python和php都要搞）。</p>
+<h2 id="知识点要常练"><a href="#知识点要常练" class="headerlink" title="知识点要常练"></a>知识点要常练</h2><p>知识点我们不仅要知道原理，而且应该多多实地操练。多做渗透测试，挖挖各大厂商的洞？？</p>
+<p>我觉得我们要更加的贴近实战，就要多做做题，靶场只是拿来练习的。</p>
+<h2 id="awd和awdp的知识点"><a href="#awd和awdp的知识点" class="headerlink" title="awd和awdp的知识点"></a>awd和awdp的知识点</h2><p>新的赛道要新的知识点，要对linux和Windows命令行知识点要熟悉。要熟悉各种攻击方法。但是要像曹哥说的要懂基础知识，基础知识一定要好，他能决定我们以后能走远。  </p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-16</span><span class="leancloud_visitors"></span><span>About 381 words, 1 min 16 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/06/%E5%8F%AF%E5%9B%BE%E5%8C%96%E5%88%A4%E6%96%AD/">可图化的判断</a></h3></div><div class="post-content"><div class="card"><p><h1 id="可简单图化"><a href="#可简单图化" class="headerlink" title="可简单图化"></a>可简单图化</h1><p>图论中给出一串整数列判断其是否可图化以及是否可简图化是一个十分重要的问题，而对于这两个问题前人提出了<strong>可图化定理</strong>及<strong>Havel定理</strong></p>
+<h2 id="可图画定理"><a href="#可图画定理" class="headerlink" title="可图画定理"></a>可图画定理</h2><p>此定理由握手定理引出，内容：</p>
+<p>非负整数列$d&#x3D;(d_1,d_2…d_n)$是可图画的当且仅当$d_1+d_2+…+d_n&#x3D;0(mod2)$</p>
+<h2 id="Havel定理"><a href="#Havel定理" class="headerlink" title="Havel定理"></a>Havel定理</h2><p>非负整数列$d&#x3D;(d_1,d_2…d_n)$满足</p>
+<p>$d_1+d_2+…+d_n&#x3D;0(mod2)$</p>
+<p>$n-1\geq d_1 \geq d_2\geq…\geq d_n\geq0$（因为简单图点的度要不能大于等于n）</p>
+<p>则 d 可简单图化当且仅当d&#96;可简单图化</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>首先这个是用递归定义的我们当然用递归实现。整数列用数组装，传的时候用数组传。用这个递归方式传递。</p>
+<p>出口就是判断极其简单的情况</p>
+<p>易得，如果一个东东是可以简单图化的。那么递归到最后一定是只有一个0，或者我们搞得更快一点判断什么时候全是0的时候就ok</p>
+<h2 id="整体思路和框架"><a href="#整体思路和框架" class="headerlink" title="整体思路和框架"></a>整体思路和框架</h2><p>首先我们要接收整数列，并得到他的长度并将其放在数组里</p>
+<p>排序，判断是否可简单图化（是否可图化），（这里有一个隐含的判断第一个是否满足条件）传递给下一个（这个过程要）</p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-06</span><span class="leancloud_visitors"></span><span>About 393 words, 1 min 18 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/06/markdown%E8%AF%AD%E6%B3%95/"></a></h3></div><div class="post-content"><div class="card"><p><h1 id="数学公式语法"><a href="#数学公式语法" class="headerlink" title="数学公式语法"></a>数学公式语法</h1><ul>
+<li>根号：<code>$\sqrt&#123;n&#125;$</code>$\sqrt{n}$</li>
+<li>方程（公式）：在markdown里面我们用$$把公式包起来就实现了公式的效果</li>
+<li>任意符号：<code>$\forall$</code>   $\forall$</li>
+<li>存在符号：<code>$\exists$</code> $\exists$ </li>
+<li>乘法公式：<code>\times</code>$\times$</li>
+<li>上标：<code>$\2^[n-1]$</code>，上标是一个多项式我们就要用{}包起来</li>
+<li>小于等于<code>\leq</code> 大于等于<code>\gep</code></li>
+</ul>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-06</span><span class="leancloud_visitors"></span><span>About 94 words, 18 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/06/%E8%B4%9D%E7%A5%96%E5%AE%9A%E7%90%86%E7%9A%84%E5%AE%9E%E7%8E%B0/">贝祖定理实现</a></h3></div><div class="post-content"><div class="card"><p><h1 id="贝祖定理"><a href="#贝祖定理" class="headerlink" title="贝祖定理"></a>贝祖定理</h1><p>贝祖定理是一个关于最大公约数的定理</p>
+<p>内容：</p>
+<p>$\forall a,b \in N_+,\exists s,t \in N ,使得 as+bt&#x3D;(a,b)$</p>
+<p>那么我们要如何得到相应的s和t呢？</p>
+<h2 id="计算s和t"><a href="#计算s和t" class="headerlink" title="计算s和t"></a>计算s和t</h2><p>贝祖定理的证明用到了广义欧几里得除法，而对于s和t的运算用到了广义欧几里得除法的逆用。</p>
+<p>寄出高级图</p>
+<p>所以我们可以使用动态规划实现找寻s和t</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Bezout</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> a, b;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>,&amp;a,&amp;b);</span><br><span class="line">	</span><br><span class="line">	Bezout(a,b);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Bezout</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span>&#123;</span><br><span class="line">	<span class="type">int</span> s1=<span class="number">1</span>, s2=<span class="number">0</span>, t1=<span class="number">0</span>, t2=<span class="number">1</span>, q=<span class="number">0</span>, r1=a, r2=b, r3=<span class="number">1</span>, temps=<span class="number">0</span>, tempt=<span class="number">0</span>, tempq=<span class="number">0</span>, tempr=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		q = r1/r2;</span><br><span class="line">		r3=r1%r2;</span><br><span class="line">		</span><br><span class="line">		temps = <span class="number">-1</span>*q*s2+s1;</span><br><span class="line">		tempt = <span class="number">-1</span>*q*t2+t1;</span><br><span class="line">		tempq = r2/r3;</span><br><span class="line">		tempr = r2%r3;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(tempr == <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;s是：%d\nt是：%d&quot;</span>,temps,tempt);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		s1 = s2; s2 = temps;</span><br><span class="line">		t1 = t2; t2 = tempt;</span><br><span class="line">		q = tempq;</span><br><span class="line">		r1 = r2; r2 = r3; r3 = tempr;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
 
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-第一篇博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time class="dt-published" datetime="2023-08-28T04:04:26.766Z" itemprop="datePublished">2023-08-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="第一篇博客记录上传部署博客的过程"><a href="#第一篇博客记录上传部署博客的过程" class="headerlink" title="第一篇博客记录上传部署博客的过程"></a>第一篇博客记录上传部署博客的过程</h1><h2 id="第一：找文件夹"><a href="#第一：找文件夹" class="headerlink" title="第一：找文件夹"></a>第一：找文件夹</h2><p>找到blog的文件夹，这里放着配置文件，主题，文章…（地址在C:\Users\WangTao\blog）</p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-06</span><span class="leancloud_visitors"></span><span>About 235 words, 47 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/06/%E5%8E%84%E6%B0%8F%E7%AD%9B%E6%B3%95/">代码实现厄氏筛法的过程</a></h3></div><div class="post-content"><div class="card"><p><h1 id="厄氏筛法"><a href="#厄氏筛法" class="headerlink" title="厄氏筛法"></a>厄氏筛法</h1><p>自己的话总结下就是一个合数n一定有一个小于等于$\sqrt{n}$的因子。所以把小于$\sqrt{n}$的素数的2倍以上数全删掉就得到所有的小于等于n的素数了</p>
+<h1 id="代码实现的想法"><a href="#代码实现的想法" class="headerlink" title="代码实现的想法"></a>代码实现的想法</h1><p>要实现这个东东，他怎么直到小于等于$\sqrt{n}$的素数有哪些，所以使用递归让$\sqrt{n}$不断减小，小岛一定程度我们就易知有哪些素数了（易知2、3、5、7是素数）</p>
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>许久未接触c了，递归也忘得差不多了。所以成这个时间再looklook</p>
+<p>简而言之，递归就是<strong>函数自己调用自己</strong></p>
+<p>首先发现问题中重复的部分，分析参数，最后设计递归出口</p>
+<h2 id="回头看厄氏筛法"><a href="#回头看厄氏筛法" class="headerlink" title="回头看厄氏筛法"></a>回头看厄氏筛法</h2><p>我们输入一个数n，要得到小于等于n的素数，</p>
+<p>得到$\sqrt{n}$，要找小于等于$\sqrt{n}$的素数，将这些素数的倍数抹去</p>
+<p>而难点就是如何直到小于等于$\sqrt{n}$的素数</p>
+<p>就要将$\sqrt{n}$当作n重复上面的操作</p>
+<p>那么最后不断地求根会得到2或者3，是2就返回2，是3就返回2，3</p>
+<p>继续得到素数之后我们只要求倍数并且抹掉他们呢就行了</p>
+<p>那么我们就可以创建一个数组，通过下标寻址，有两个状态：Y，N</p>
+<p>创建一个动态的数组，用malloc函数给他分配空间</p>
+<h2 id="转机"><a href="#转机" class="headerlink" title="转机"></a>转机</h2><p>命运的齿轮发生了转动。发现这个递归一点也不好写：）</p>
+<p>寄出gpt</p>
+<p>nn的，gpt人工智障了，但是他给出了这个算法不应该用递归实现，通常用迭代循环实现</p>
+<p>代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">sieveOfEratosthenes</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">	<span class="comment">//首先定义了一个素数表，并且初始化 </span></span><br><span class="line">    <span class="type">bool</span> isPrime[n+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        isPrime[i] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//巧妙的点，不使用求根而是反向判断这个数平方是否小于等于n </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> p = <span class="number">2</span>; p * p &lt;= n; p++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (isPrime[p] == <span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = p * p; i &lt;= n; i += p) &#123;</span><br><span class="line">                isPrime[i] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;素数：&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (isPrime[i]) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入一个正整数n：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;在区间 [2, %d] 内的素数有：\n&quot;</span>, n);</span><br><span class="line">    sieveOfEratosthenes(n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为有一个重要的点——从2开始，如果我们把最小的数的倍数都抹掉的话从下往上最小的哪一个一定是素数</p>
+<p>由此这个迭代循环从下往上会更简单，我们只要从2开始将他的倍数抹去。直到大于n。而后换另一个。</p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-06</span><span class="leancloud_visitors"></span><span>About 724 words, 2 min 24 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/09/22/%E4%B8%80%E9%81%93%E5%BC%B1%E7%B1%BB%E5%9E%8B%E7%89%B5%E5%87%BA%E6%9D%A5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/">一道弱类型牵出来的知识点</a></h3></div><div class="post-content"><div class="card"><p><h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/_|%5f|\.|%2E/i&#x27;</span>, <span class="variable">$query</span>)) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$query</span>);</span><br><span class="line">    <span class="keyword">echo</span><span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;你卡在第一步&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;k_e_y&#x27;</span>] !==<span class="string">&#x27;123&#x27;</span> &amp;&amp; <span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^123$/&#x27;</span>,<span class="variable">$_GET</span>[<span class="string">&#x27;k_e_y&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">echo</span>(<span class="string">&quot;成功绕过两个限制了&lt;br&gt;&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;command&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$command</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;command&#x27;</span>];</span><br><span class="line">        <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/\~|\`|\@|\#|\\$|\%|\&amp;|\*|\（|\）|\-|\+|\=|\&#123;|\&#125;|\[|\]|\:|\&#x27;|\&quot;|\,|\&lt;|\.|\&gt;|\/|\?|\\\\/i&quot;</span>,<span class="variable">$command</span>))&#123;</span><br><span class="line">            <span class="keyword">eval</span>(<span class="variable">$command</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span>(<span class="string">&quot;第三步没绕过&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span>(<span class="string">&quot;第二步没绕过&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一道php弱类型题，首先应该看懂正则，搞懂哪些限制；然后知道preg_match()的绕过方式；最后知道使用函数查看文件获得flag</p>
+<h1 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h1><h2 id="正则表达式是什么？"><a href="#正则表达式是什么？" class="headerlink" title="正则表达式是什么？"></a>正则表达式是什么？</h2><p>PHP正则表达式是形成搜索模式的字符序列，我们可以利用它实现对传入字符串的查询搜索（发现危险的东东就删掉或换掉），或是替换</p>
+<p>在php中其是   由 分隔符、模式 和 可选择修饰符 组成的字符串</p>
+<p>eg：&#x2F; 模式 &#x2F; 修饰符</p>
+<p>注：分隔符可以是任何非字母，数字，\ 或 空格的字符  &#x2F; # ~… 都行</p>
+<h2 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h2><h3 id="使用的函数"><a href="#使用的函数" class="headerlink" title="使用的函数"></a>使用的函数</h3><p>preg_match(string $pattern, string $subject  […] )     match(匹配模式)   ——》在字符串中找到该模式，成功返回1，否则0；  $pattern是正则表达式， $subject是目标字符串；</p>
+<p>preg_match_all()    （匹配所有模式）——》 在字符串中找到匹配该模式的次数，返回次数</p>
+<p>preg_replace()    replace(代替)  ——》会将匹配模式中的字符换掉，返回替换后的字符串</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ul>
+<li><p>字面值字符：字母，数字，空格等，可以直接匹配</p>
+</li>
+<li><p>特殊字符：eg：* + ？等，具有特殊含义和功能</p>
+<ul>
+<li><p><code>*</code>：匹配前面的子表达式0次或多次<br>啥叫子表达式？–》eg:<code>abcd*</code> 这里的d就是“前面的子表达式”，匹配的时候会匹配<code>abc</code>+零次或多次<code>d</code>   相当于{0,}<br><img src="file:///C:/Users/WangTao/Pictures/Typedown/c95f83ac-7fd2-4a3f-b89a-cb4093d4d978.png" alt="c95f83ac-7fd2-4a3f-b89a-cb4093d4d978"></p>
+</li>
+<li><p><code>+</code> ： 匹配一次或多次</p>
+</li>
+<li><p><code>.</code> ： 匹配  \n 以外的任何字符</p>
+</li>
+<li><p><code>?</code> ：匹配零次或一次</p>
+</li>
+</ul>
+</li>
+<li><p>字符类：用方括号 <code>[ ]</code> 包围的字符集合，用于匹配方括号内的任意一个字符。<br>eg：<code>[abcd]</code> 就能匹配abcd中的任一字符，它会看作为一个整体，可以在后面接后续操作<br>一个正则表达式遍历搜索的时候是从头搜索起的，直到遇到一个不符合的<br><img src="file:///C:/Users/WangTao/Pictures/Typedown/d6857797-72a2-46f1-9421-e77089479a6a.png" alt="d6857797-72a2-46f1-9421-e77089479a6a"><br>这个例子会遍历搜索表达式里有abcd的地方<br>但是遇到第一个不符合的地方时就会“断掉”<br><img src="file:///C:/Users/WangTao/Pictures/Typedown/cdef4b4c-b99f-4599-a496-a28a446bd104.png" alt="cdef4b4c-b99f-4599-a496-a28a446bd104"><br>这里就会在b这个地方断掉</p>
+</li>
+<li><p>元字符：例如 <code>\d</code>、<code>\w</code>、<code>\s</code> 等，用于匹配特定类型的字符，如数字、字母、空白字符等。</p>
+</li>
+<li><p>修饰符：<code>i   g   m   s ...</code><br><img src="file:///C:/Users/WangTao/Pictures/Typedown/c59fdac7-3d49-47e6-b912-8edeea813f70.png" alt="c59fdac7-3d49-47e6-b912-8edeea813f70"></p>
+</li>
+<li><p>量词：例如 <code>&#123;n&#125;</code>、<code>&#123;n,&#125;</code>、<code>&#123;n,m&#125;</code> 等，用于指定匹配的次数或范围。</p>
+</li>
+<li><p>边界符号：例如 <code>^</code>、<code>$</code>、<code>\b</code>、<code>\B</code> 等，用于匹配字符串的开头、结尾或单词边界位置。</p>
+<ul>
+<li><p>^表示字符 开头</p>
+</li>
+<li><p>$表示 结束<br>具体的遇到就百度吧</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="变量字符的绕过"><a href="#变量字符的绕过" class="headerlink" title="变量字符的绕过"></a>变量字符的绕过</h1><p>（前面获取变量的地方没截下来）我们看到他要验证k_e_y传参的值，但是参数不能输入<code>_</code>，就考到非法字符替换</p>
+<p>简单说来，php在获取变量之后会将他们转化为有效变量名，此时就会替换非法字符</p>
+<p>eg： [     &amp;  空格  +  .   &#x3D; 以及他们的url编码</p>
+<p>所以面对检查问题时我们往往通过此方法绕过</p>
+<p><img src="file:///C:/Users/WangTao/Pictures/Typedown/2ebde11c-d0a2-4935-8852-e08b70eb460b.png" alt="2ebde11c-d0a2-4935-8852-e08b70eb460b"></p>
+<p>实测 + 可绕过</p>
+<h1 id="preg-match-绕过"><a href="#preg-match-绕过" class="headerlink" title="preg_match()绕过"></a>preg_match()绕过</h1><p>比较字符串函数，详见php笔记</p>
+<p>绕过方法</p>
+<ol>
+<li>数组绕过：preg_match只处理字符串，传入的subject是数组时就会返回false</li>
+<li>PCRE回溯次数限制（什么归东东，不太懂）</li>
+<li>换行符</li>
+<li>尾句%0a绕过</li>
+</ol>
+<h1 id="php函数实现无参数读取文件"><a href="#php函数实现无参数读取文件" class="headerlink" title="php函数实现无参数读取文件"></a>php函数实现无参数读取文件</h1><p>在这里我们应该首先想到文件读取，但是过滤了很多字符，发现括号是中文的。那么就是提示我们使用函数</p>
+<p>要使用文件读取</p>
+<p>过滤了那么多，就只能用无参数文件读取</p>
+<p>eval函数使得存在RCE（远程代码执行漏洞），我们利用它实现我们的函数执行</p>
+<h2 id="首先我们应该知道文件夹名"><a href="#首先我们应该知道文件夹名" class="headerlink" title="首先我们应该知道文件夹名"></a>首先我们应该知道文件夹名</h2><p>正常的情况，<code>print_r(scandir(&#39;.&#39;));</code> 可以看到当前文件夹名，但是<code>.</code>是被过滤的。所以我们应该制造这个点</p>
+<h3 id="制造点"><a href="#制造点" class="headerlink" title="制造点"></a>制造点</h3><ol>
+<li><p>localeconv()</p>
+<p><code>localeconv()</code>返回一包含本地数字及货币格式信息的数组。而数组第一项就是<code>&quot;.&quot;</code></p>
+<p>此时我们的需求就是获取第一个字符</p>
+<p>那么就要献出</p>
+<p><code>current()</code>返回数组中的单元，默认取第一个值</p>
+<p><code>reset()</code>函数</p>
+<p>所以方法&#x3D;<code>print_r(scandir(pos(localeconv())));</code>其中<code>pos</code>是<code>current</code>别名</p>
+<p><code>print_r(scandir(current(localeconv())));</code></p>
+</li>
+<li><p><code>chr(46)</code></p>
+<p><code>chr(46) = .</code></p>
+</li>
+<li><p><code>phpversion()</code> </p>
+<p>通过取数函数运算的方式得到46</p>
+</li>
+</ol>
+<h2 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h2><p>知道了文件夹名，而后要读文件</p>
+<p>读文件就是文件包含漏洞</p>
+<p>经典函数：</p>
+<ul>
+<li><p><code>readfile</code></p>
+</li>
+<li><p><code>highlight_file</code></p>
+</li>
+<li><p><code>file_get_contents</code></p>
+</li>
+</ul>
+<h2 id="查看上一级目录文件名"><a href="#查看上一级目录文件名" class="headerlink" title="查看上一级目录文件名"></a>查看上一级目录文件名</h2><ul>
+<li><p><code>dirname()</code>返回路径中目录的部分</p>
+</li>
+<li><p>构造<code>..</code> —— 就是两个点</p>
+<p><code>print_r(next(scandir(getcwd())));</code></p>
+</li>
+</ul>
+<h3 id="读取上级目录文件"><a href="#读取上级目录文件" class="headerlink" title="读取上级目录文件"></a>读取上级目录文件</h3><p><code>show_source(array_rand(array_flip(scandir(dirname(chdir(dirname(getcwd())))))));</code></p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-09-22</span><span class="leancloud_visitors"></span><span>About 1407 words, 4 min 41 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">第一篇博客——记录上传部署博客的过程</a></h3></div><div class="post-content"><div class="card"><p><h2 id="第一：找文件夹"><a href="#第一：找文件夹" class="headerlink" title="第一：找文件夹"></a>第一：找文件夹</h2><p>找到blog的文件夹，这里放着配置文件，主题，文章…（地址在C:\Users\WangTao\blog）</p>
 <p>然后找到source文件夹，到里面的_posts文件夹，这里放着文章。把文章放里面。</p>
 <h2 id="第二：在终端输命令"><a href="#第二：在终端输命令" class="headerlink" title="第二：在终端输命令"></a>第二：在终端输命令</h2><p>终端，不是cmd，想快点就cmd这里找。</p>
 <p><img src="file:///C:/Users/WangTao/Pictures/Typedown/d07e4303-f38d-429e-9b2a-5e9d569e91ab.png" alt="d07e4303-f38d-429e-9b2a-5e9d569e91ab"></p>
@@ -100,50 +205,10 @@
 </li>
 </ol>
 </li>
-<li><p>git’ 不是内部或外部命令，也不是可运行的程序或批处理文件。</p>
-<p>git没放在环境变量里</p>
-<p>解决方法：找到git (git bash),增加环境变量。</p>
+<li><p>git’ 不是内部或外部命令，也不是可运行的程序或批处理文件。<br>git没放在环境变量里<br>解决方法：找到git (git bash),增加环境变量。</p>
 </li>
 </ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="cllue7m5d0000n8xg5qgu6nrn" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/11/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-10-11T13:30:33.037Z" itemprop="datePublished">2022-10-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-08-28</span><span class="leancloud_visitors"></span><span>About 251 words, 50 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2022/10/11/hello-world/">Hello World</a></h3></div><div class="post-content"><div class="card"><p><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -156,106 +221,4 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/11/hello-world/" data-id="cl948uhnq00005cxg04fodlia" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2022/10/11/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2023 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-10-11</span><span class="leancloud_visitors"></span><span>About 75 words, 15 sec  read</span></div></div></div></div><div class="pagination"><ul class="clearfix"></ul></div></div></div></div><script src="/js/darkLightToggle.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div></body></html>
